@@ -15,11 +15,14 @@ class ProdutoController extends Controller
             $reader->each(function($sheet){
                 foreach($sheet->toArray() as $row){
                     Produto::firstOrCreate($sheet->toArray());
+                   // dd($bola);
+
                 }
             });
+
         });
-      echo "Importação Completa!";
-        //return redirect('/');
+      //echo "Importação Completa!";
+        return redirect('/');
     }
     /**
      * Display a listing of the resource.
@@ -29,7 +32,7 @@ class ProdutoController extends Controller
     public function index()
     {
         $prod = Produto::all();
-        return $prod;
+        return json_encode($prod);
         //return view('produtos');
     }
 

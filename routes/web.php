@@ -12,12 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('produtos');
+    return view('/produtos');
 });
 
 Route::post('/processa','ProdutoController@import');
-Route::get('/teste',function(){
 
-	return view('upload');
-});
 
