@@ -1,0 +1,1 @@
+Observação: O arquivo excel se encontra na pasta Arquivo_Formato_EXcel só para visualizar a estrutura dos dados da tabela.
