@@ -24,8 +24,11 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Produto::class, function (Faker $faker) {
     return [
+
         'nome' => $faker->name,
-        'quantidade' => $faker->randomNumber(),
-        'preco' => $faker->numberBetween()
+        'codigo' => $faker->name,
+        'quantidade' => $faker->randomNumber(5),
+        'preco' => $faker->numberBetween(2,9)
+
     ];
 });

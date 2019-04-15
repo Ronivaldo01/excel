@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-               
+
             </tbody>
         </table>
        
@@ -77,10 +77,9 @@
             "<td>" + p.nome + "</td>" +
             "<td>" + p.quantidade + "</td>" +
             "<td>" + p.preco + "</td>" +
-           // "<td>" + p.categoria_id + "</td>" +
             "<td>" +
-              '<button class="btn btn-sm btn-primary" onclick="editar(' + p.id + ')"> Editar </button> ' +
-              '<button class="btn btn-sm btn-danger" onclick="remover(' + p.id + ')"> Apagar </button> ' +
+              '<a type="button" class="btn btn-sm btn-primary" href="editar/'+ p.id+'"> Editar </a> ' +
+              '<a type="button" class="btn btn-sm btn-danger" href="deletar/'+ p.id+'"> Deletar </a>  ' +
             "</td>" +
             "</tr>";
         return linha;
@@ -94,6 +93,13 @@
             }
         });        
     }
+
+    function editar($id){
+        $.get('',function($id){
+            url:'produtos/editar' + $id;
+        });
+
+    }
    
     $(function(){
         //carregarCategorias();
@@ -102,7 +108,6 @@
     
 </script>
 @endsection
-     
      
      
      

@@ -8,5 +8,5 @@ class Produto extends Model
 {
     protected $table = 'produtos';
 	public $timestamp = false;
-    protected $fillable = array('nome','quantidade','preco');
+    protected $fillable = array('codigo','nome','quantidade','preco');
 }

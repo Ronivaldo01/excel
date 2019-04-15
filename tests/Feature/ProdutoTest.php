@@ -6,7 +6,9 @@
  * Time: 14:50
  */
 
+
 namespace Tests\Feature;
+
 
 
 use Tests\TestCase;
@@ -14,19 +16,31 @@ use Tests\TestCase;
 class ProdutoTest extends TestCase
 {
 
-    public function testApiList()
+    public function testList()
     {
         factory(\App\Produto::class)->create();
         $response = $this->get('/');
         $response->assertStatus(200);
     }
 
-
-
-    public function testUpload()
+    public function testView()
     {
-        $data = factory(\App\Produto::class);
-        $this->assertTrue(true);
+        $data = factory(\App\Produto::class)->create();
+        $response = $this->json('GET', '/editar/'.$data->id);
+
+        $response->assertStatus(200);
     }
+
+
+
+    public function testDelete()
+    {
+
+        $data = factory(\App\Produto::class)->create();
+        $response = $this->json('GET', '/deletar/'.$data->id);
+        $response->assertStatus(200);
+    }
+
+
 }
 

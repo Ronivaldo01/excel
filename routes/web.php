@@ -16,5 +16,8 @@ Route::get('/', function () {
 });
 
 Route::post('/processa','ProdutoController@import');
+Route::get('/editar/{id}','ProdutoController@edit');
+Route::get('/deletar/{id}','ProdutoController@destroy');
+Route::post('/produtos/{id}','ProdutoController@update');
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Databases;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Produto;
@@ -11,11 +11,14 @@ class ProdutoController extends Controller
 {
 
     public function import(){
+        Produto::destroy('produtos');
+
         \Excel::load(Input::file('arquivo'),function($reader){
             $reader->each(function($sheet){
                 foreach($sheet->toArray() as $row){
+
                     Produto::firstOrCreate($sheet->toArray());
-                   // dd($bola);
+
 
                 }
             });
@@ -76,7 +79,11 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $prods = Produto::find($id);
+        if(isset($prods)){
+            return view('editar',compact('prods'));
+        }
+        //return redirect('/editar');
     }
 
     /**
@@ -88,7 +95,14 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prod = Produto::find($id);
+        if(isset($prod)){
+            $prod->nome = $request->input('nome');
+            $prod->quantidade = $request->input('quantidade');
+            $prod->preco = $request->input('preco');
+            $prod->save();
+            return redirect('/');
+        }
     }
 
     /**
@@ -99,6 +113,13 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prod = new Produto();
+        $dados = $prod->find($id);
+        if($dados){
+            $dados->delete();
+            return redirect('/');
+        }
+
+
     }
 }
