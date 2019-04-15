@@ -37,8 +37,19 @@ class ProdutoTest extends TestCase
     {
 
         $data = factory(\App\Produto::class)->create();
-        $response = $this->json('GET', '/deletar/'.$data->id);
+        $response = $this->json('DELETE', '/deletar/'.$data->id);
         $response->assertStatus(200);
+    }
+
+    public function testUpdate()
+    {
+
+        $data = factory(\App\Produto::class)->create();
+        $toUpdate = ['name' => 'Martelo'];
+
+        $response = $this->json('PUT', 'editar/'.$data->id, $toUpdate);
+        $response->assertStatus(200)
+            ->assertJson($toUpdate);
     }
 
 
